@@ -34,3 +34,42 @@ export const NovoUsuario = async (nome :string, altura : number, nascimento : st
     }
 
 }
+
+export const MostrarUsuarios = async () => {
+    try {
+        const [usuarios]: any[]= await connection.execute('call `MostrarClientes`;');
+        return usuarios        
+    } catch (error) {   
+        console.log(error);
+        return {message : 'Erro interno'}
+        
+    }
+   
+
+}
+
+
+export const AdicionarProduto = async (nome : string, preco : number, quantidade : number, categoria : number ) => {
+
+    try {
+        connection.execute("call AdicionarProduto (?, ?, ?, ?);", [nome, preco, quantidade, categoria]);
+    } catch (error) {
+        console.log(error);
+        return {message : "Erro ao adicionar o produto"}
+    }
+
+}
+
+export const RemoverProduto = async (idproduto : number) => {
+
+    try {
+        connection.execute("call DeletarProdutos(?);", [idproduto]);
+
+        
+    } catch (error) {
+        console.log(error);
+        return {message : "Erro interno"};
+        
+    }
+
+}

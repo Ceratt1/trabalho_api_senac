@@ -74,7 +74,6 @@ BEGIN
     );
 END;
 
-DROP Procedure `adicionarCliente`;
 
 
 
@@ -92,6 +91,9 @@ END;
 
 DELIMITER //
 
+
+
+
 CREATE PROCEDURE MostrarProdutos()
 BEGIN
     SELECT p.nome, p.preco, p.quantidade, c.nome AS categoria 
@@ -106,22 +108,18 @@ DELIMITER ;
 
 
 
+
 DELIMITER //
 
 CREATE PROCEDURE MostrarClientes()
 BEGIN
-select c.nome, ci.nome from db_loja.clientes c
+select c.id ,c.nome as NomeCliente, ci.nome as NomeCidade from db_loja.clientes c
 INNER JOIN db_loja.cidades ci ON ci.id = c.cidade_id
 ;
 
 END//
 
 DELIMITER ;
-
-
--- call `MostrarClientes`;
-
-
 
 
 -- CALL `MostrarProdutos`;
