@@ -91,20 +91,16 @@ END;
 
 DELIMITER //
 
-
-
-
 CREATE PROCEDURE MostrarProdutos()
 BEGIN
-    SELECT p.nome, p.preco, p.quantidade, c.nome AS categoria 
+    SELECT p.id ,p.nome, p.preco, p.quantidade, c.nome AS categoria 
     FROM produtos p
     INNER JOIN categorias c ON c.id = p.categoria_id;
 END//
 
 DELIMITER ;
 
-
-
+drop Procedure `MostrarProdutos`;
 
 
 
@@ -120,6 +116,27 @@ INNER JOIN db_loja.cidades ci ON ci.id = c.cidade_id
 END//
 
 DELIMITER ;
+
+
+DELIMITER //
+CREATE PROCEDURE DeletarProdutos(
+    IN idproduto INT
+)
+BEGIN
+DELETE FROM produtos WHERE id = idproduto;
+END//
+DELIMITER ;
+
+-- call `DeletarProdutos(?)`;
+
+
+
+
+
+
+
+
+
 
 
 -- CALL `MostrarProdutos`;
