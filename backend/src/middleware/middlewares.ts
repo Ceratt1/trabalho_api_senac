@@ -68,31 +68,17 @@ export const middlewareCheckProdutoId = async (req : Request, res : Response, ne
     const [id] = await MostrarProdutos()
     const ids : Array<number> = []
     const idproduto : number =  parseInt(req.params.idproduto)    
-    
-
     for (let index = 0; index < id.length; index++) {
         ids.push(id[index]['id'])           
-    };
-    console.log(idproduto,ids);
+    };    
     
-    
-    if (idproduto) {
-        for (let index = 0; index < ids.length; index++) {
-            if (idproduto == ids[index]) {
-                console.log(ids[index]);
-                
-                next()
-            }else {
-                console.log('não existente');
-                
-            }
-            
-        }
+    if (ids.includes(idproduto)) {
+        next()
         
     }else{
-        return res.status(400).json({message : "Item não existente"})
+        return res.status(400).json({message : "Esse item não existe"})
     }
-    
+
 
 }
 
