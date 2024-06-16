@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { MostrarProdutos, NovoUsuario, MostrarUsuarios, AdicionarProduto, RemoverProduto, atualizarProduto } from '../models/querys'
+import { MostrarProdutos, NovoUsuario, MostrarUsuarios, AdicionarProduto, RemoverProduto, atualizarProduto, CriarPedidoQuery, MostrarCarrinhoQuery } from '../models/querys'
 import { log } from 'console';
 
 
@@ -97,5 +97,29 @@ export const atualizarProdutocontroll = async (req: Request, res: Response): Pro
 
         return res.status(400).json({ message: "Erro ao atualizar o item" })
     }
+
+};
+
+
+
+
+export const PedidoProduto = async (req: Request, res: Response): Promise<any> => {
+    const idcliente : number = parseInt(req.params.id)
+    const idproduto : number = parseInt(req.params.idproduto)
+    const quantidade : number = req.body.quantidade
+    const query: any = await CriarPedidoQuery(idcliente, idproduto, quantidade)
+    
+    return res.status(200).json(query)
+
+
+}
+
+
+export const MostrarCarrinho = async (req: Request, res: Response): Promise<any> => {
+    const idcliente : number = parseInt(req.params.id)
+    const query = await MostrarCarrinhoQuery(idcliente)
+
+    return res.status(200).json(query)
+
 
 };

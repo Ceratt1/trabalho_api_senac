@@ -22,6 +22,8 @@ create table clientes (
     FOREIGN KEY (cidade_id) REFERENCES cidades (id)
 );
 
+
+
 create table produtos (
     id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     nome VARCHAR(100),
@@ -121,15 +123,89 @@ BEGIN
     INSERT INTO db_loja.pedidos (horario, endereco ,cliente_id) VALUES (NOW(), p_endereco ,v_cliente_id);
 
 END //
+DELIMITER //
+
+CREATE PROCEDURE CriarPedido(
+    IN p_client_id INT,
+    IN p_produto_id INT,
+    IN p_quantidade INT
+)
+BEGIN
+    DECLARE v_pedido_id INT;
+    DECLARE v_produto_preco DOUBLE;
+
+    SELECT preco INTO v_produto_preco 
+    FROM db_loja.produtos 
+    WHERE id = p_produto_id;
+
+    SELECT id INTO v_pedido_id
+    FROM db_loja.pedidos 
+    WHERE cliente_id = p_client_id
+    LIMIT 1;
+
+    INSERT INTO db_loja.pedidos_produtos (pedido_id, produto_id, preco, quantidade) 
+    VALUES (v_pedido_id, p_produto_id, v_produto_preco, p_quantidade);
+END //
+
+DELIMITER ;
+
+-- ///////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+DELIMITER //
+
+CREATE PROCEDURE MostrarCarrinho(
+    IN p_client_id INT
+)
+BEGIN
+    DECLARE v_pedido_id INT;
+
+    -- Obter o pedido do cliente
+    SELECT id INTO v_pedido_id
+    FROM db_loja.pedidos 
+    WHERE cliente_id = p_client_id
+    LIMIT 1;
+
+    -- Selecionar informações do carrinho
+    SELECT pp.pedido_id,
+           c.nome AS NomeCliente,
+           pr.nome AS NomeProduto,
+           pp.quantidade,
+           pp.preco
+    FROM db_loja.pedidos_produtos pp
+    INNER JOIN db_loja.pedidos p ON p.id = pp.pedido_id
+    INNER JOIN db_loja.clientes c ON c.id = p.cliente_id
+    INNER JOIN db_loja.produtos pr ON pr.id = pp.produto_id
+    WHERE p.id = v_pedido_id;
+
+END //
 
 DELIMITER ;
 
 
 
 
-select * from db_loja.clientes;
-select * from db_loja.pedidos;
 
 
-
+DROP Procedure `MostrarCarrinho`;
+CALL MostrarCarrinho(5);
 

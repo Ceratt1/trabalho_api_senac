@@ -99,3 +99,37 @@ export const atualizarProduto = async (nome: string, preco: number, quantidade: 
         return { message: 'Error updating product' };
     }
 }
+
+
+export const CriarPedidoQuery = async (idcliente: number, p_produto : number, p_quantidade : number) => {
+
+    try {
+
+        await connection.execute(
+            'call CriarPedido (?, ?, ?);',
+            [idcliente, p_produto, p_quantidade]
+        );
+        return { message: `Produto Adicionado ao seu carrinho` };
+    } catch (error) {
+        console.error(error);
+        return { message: 'erro ao adicionar este produto' };
+    }
+
+
+};
+
+
+export const MostrarCarrinhoQuery = async (idcliente: number) => {
+
+    try {
+        const [carrinho]: any[] = await connection.execute(
+            'call MostrarCarrinho (?);', [idcliente]);
+            return carrinho
+
+    } catch (error) {
+        console.error(error);
+        return { message: 'erro ao mostrar o carrinho' };
+    }
+
+
+};
