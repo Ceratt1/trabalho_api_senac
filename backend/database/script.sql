@@ -62,21 +62,6 @@ INSERT into categorias (nome) VALUES ('eletrônicos');
 INSERT into categorias (nome) VALUES ('alimentos');
 
 INSERT into categorias (nome) VALUES ('roupas');
-CREATE PROCEDURE CriarCliente(
-    IN p_nome VARCHAR(100),
-    IN p_altura DOUBLE,
-    IN p_nascimento_ptbr VARCHAR(10),  
-    IN p_cidade_id INT
-)
-BEGIN
-    INSERT INTO clientes (nome, altura, nascimento, cidade_id)
-    VALUES (
-        p_nome, 
-        p_altura, 
-        STR_TO_DATE(p_nascimento_ptbr, '%d/%m/%Y'), 
-        p_cidade_id
-    );
-END;
 CREATE PROCEDURE AdicionarProduto(
     IN p_nome VARCHAR(100),
     IN p_preco DOUBLE,
