@@ -118,8 +118,19 @@ export const PedidoProduto = async (req: Request, res: Response): Promise<any> =
 export const MostrarCarrinho = async (req: Request, res: Response): Promise<any> => {
     const idcliente : number = parseInt(req.params.id)
     const query = await MostrarCarrinhoQuery(idcliente)
+    let somatotal : number = 0
 
-    return res.status(200).json(query)
+    for (let index = 0; index < query[0].length; index++) {
+        console.log(index);
+        
+        somatotal += query[0][index]['preco']
+
+    }
+    console.log(somatotal);
+    
+    const todosDados : any[] = [query[0], {Total: somatotal.toFixed(2)}]
+
+    return res.status(200).json(todosDados)
 
 
 };
