@@ -62,7 +62,6 @@ INSERT into categorias (nome) VALUES ('eletrônicos');
 INSERT into categorias (nome) VALUES ('alimentos');
 
 INSERT into categorias (nome) VALUES ('roupas');
-
 CREATE PROCEDURE CriarCliente(
     IN p_nome VARCHAR(100),
     IN p_altura DOUBLE,
@@ -78,7 +77,6 @@ BEGIN
         p_cidade_id
     );
 END;
-
 CREATE PROCEDURE AdicionarProduto(
     IN p_nome VARCHAR(100),
     IN p_preco DOUBLE,
@@ -91,60 +89,29 @@ BEGIN
 END;
 
 DELIMITER / /
-
-drop PROCEDURE `AdicionarProduto`;
-
 CREATE PROCEDURE MostrarProdutos()
 BEGIN
     SELECT p.id ,p.nome, p.preco, p.quantidade, c.nome AS categoria 
     FROM produtos p
     INNER JOIN categorias c ON c.id = p.categoria_id;
 END//
-
 DELIMITER;
-
-drop Procedure `MostrarProdutos`;
-
 DELIMITER / /
-
 CREATE PROCEDURE MostrarClientes()
 BEGIN
 select c.id ,c.nome as NomeCliente, ci.nome as NomeCidade from db_loja.clientes c
 INNER JOIN db_loja.cidades ci ON ci.id = c.cidade_id
 ;
-
 END//
-
 DELIMITER;
-
 DELIMITER / /
-
 CREATE PROCEDURE DeletarProdutos(
     IN idproduto INT
 )
 BEGIN
 DELETE FROM produtos WHERE id = idproduto;
 END//
-
 DELIMITER;
-
--- call `DeletarProdutos(?)`;
-
--- CALL `MostrarProdutos`;
-
--- call CriarCliente(? , ? , ? , ?);
-
--- call AdicionarProduto ('chimarrao', 22.99, 500, 3);
-call `MostrarClientes`;
-
-
-INSERT INTO db_loja.pedidos (horario, endereco, cliente_id) VALUES ('2022-11-20 10:00:00', 'rua dos testes', 1);
-
-
-
-
-
-
 
 
 DELIMITER //
@@ -173,5 +140,11 @@ END //
 DELIMITER ;
 
 
-select * from db_loja.pedidos_produtos;
-insert INTO db_loja.pedidos_produtos (produtos_id, preco, quantidade) VALUES ()
+
+
+select * from db_loja.clientes;
+select * from db_loja.pedidos;
+
+
+
+

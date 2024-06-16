@@ -11,5 +11,6 @@ router.get('/mostrarusuarios', MostrarUsers);
 router.post('/novoproduto/:id/cadastrar', middlewareCheckId, middlewarNewProduct, AdicionarProdutoControl);
 router.delete('/removerproduto/:id/remover/:idproduto', middlewareCheckId, middlewareCheckProdutoId, removerProduto);
 router.put('/atualizar/:id/produto/:idproduto', middlewareCheckId, middlewareCheckProdutoId, atualizarProdutocontroll);
+router.post('/comprar/:id/produto/:idproduto', middlewareCheckProdutoId, RootVoid);
 
 export default router   
