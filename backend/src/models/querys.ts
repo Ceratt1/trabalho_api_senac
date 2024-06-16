@@ -22,10 +22,10 @@ export const MostrarProdutos = async () => {
 };
 
 
-export const NovoUsuario = async (nome: string, altura: number, nascimento: string, cidade: number) => {
+export const NovoUsuario = async (nome: string, altura: number, nascimento: string, cidade: number, endereco : string) => {
 
     try {
-        connection.execute("call CriarCliente(? , ? , ? , ?);", [nome, altura, nascimento, cidade]);
+        connection.execute("call CriarCliente(? , ? , ? , ?, ?);", [nome, altura, nascimento, cidade, endereco]);
         return { message: "Erro interno" }
     } catch (error) {
         console.log(error);

@@ -21,8 +21,9 @@ export const NovoUsuarioControl = async (req: Request, res: Response): Promise<a
     const altura: number = req.body.altura;
     const nascimento: string = req.body.nascimento;
     const cidade: number = req.body.cidade;
+    const endereco : string  = req.body.endereco
     try {
-        NovoUsuario(nome, altura, nascimento, cidade)
+        NovoUsuario(nome, altura, nascimento, cidade, endereco)
         return res.status(200).json({ message: "Cliente " + nome + " foi criado" })
     } catch (error) {
         console.log(error);
@@ -96,7 +97,5 @@ export const atualizarProdutocontroll = async (req: Request, res: Response): Pro
 
         return res.status(400).json({ message: "Erro ao atualizar o item" })
     }
-
-
 
 };

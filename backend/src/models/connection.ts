@@ -11,6 +11,8 @@ dotenv.config();
 //     database: process.env.DB_NOME
 // });
 
+//caso não altere, é pq vc ta programando em 2 pc's diferentes, e um é windows :c
+
 const connection: Pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
@@ -24,3 +26,7 @@ const connection: Pool = mysql.createPool({
 
 
 export default connection;
+
+
+
+

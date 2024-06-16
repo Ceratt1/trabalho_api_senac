@@ -134,4 +134,44 @@ DELIMITER;
 
 -- call CriarCliente(? , ? , ? , ?);
 
-call AdicionarProduto ('chimarrao', 22.99, 500, 3);
+-- call AdicionarProduto ('chimarrao', 22.99, 500, 3);
+call `MostrarClientes`;
+
+
+INSERT INTO db_loja.pedidos (horario, endereco, cliente_id) VALUES ('2022-11-20 10:00:00', 'rua dos testes', 1);
+
+
+
+
+
+
+
+
+DELIMITER //
+
+CREATE PROCEDURE CriarCliente(
+    IN p_nome VARCHAR(100),
+    IN p_altura DOUBLE,
+    IN p_nascimento_ptbr VARCHAR(10),  
+    IN p_cidade_id INT,
+    IN p_endereco VARCHAR(200)
+)
+BEGIN
+    DECLARE v_cliente_id INT;
+
+    INSERT INTO db_loja.clientes (nome, altura, nascimento, cidade_id) VALUES (p_nome, p_altura, STR_TO_DATE(p_nascimento_ptbr, '%d/%m/%Y'), p_cidade_id);
+
+    SELECT c.id INTO v_cliente_id
+    FROM clientes c 
+    WHERE nome = p_nome
+    LIMIT 1;
+
+    INSERT INTO db_loja.pedidos (horario, endereco ,cliente_id) VALUES (NOW(), p_endereco ,v_cliente_id);
+
+END //
+
+DELIMITER ;
+
+
+select * from db_loja.pedidos_produtos;
+insert INTO db_loja.pedidos_produtos (produtos_id, preco, quantidade) VALUES ()
