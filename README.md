@@ -2,26 +2,21 @@
     <p>Este projeto é um trabalho da faculdade UNISENAC, lecionado pelo professor Adalto na aula de Desenvolvimento de API's I.</p>
   
   <h2>Descrição</h2>
-  <p>Esta é uma API desenvolvida em TypeScript utilizando Express, dotenv, mysql2 e nodemon.</p>
+  <p>Esta é uma API desenvolvida em TypeScript utilizando Express, dotenv, mysql2 e nodemon.
+  Não será necessário criar um arquivo <code>.env</code> pois estou trabalhando localmente.</p>
   
   <h2>Instalação</h2>
   <p>Para instalar e executar este projeto, siga os passos abaixo:</p>
   <ol>
       <li>Clone o repositório:
-          <pre><code>git clone https://github.com/seu-usuario/nome-do-repositorio.git</code></pre>
+          <pre><code>git clone https://github.com/Ceratt1/trabalho_api_senac</code></pre>
       </li>
       <li>Entre no diretório do projeto:
-          <pre><code>cd nome-do-repositorio</code></pre>
+          <pre><code>cd backend</code></pre>
       </li>
       <li>Instale as dependências:
           <pre><code>npm install</code></pre>
       </li>
-      <li>Crie um arquivo <code>.env</code> na raiz do projeto e adicione suas variáveis de ambiente:
-          <pre><code>DB_HOST=localhost
-DB_USER=seu_usuario
-DB_PASSWORD=sua_senha
-DB_NAME=nome_do_banco</code></pre>
-        </li>
         <li>Execute a aplicação:
             <pre><code>npm run dev</code></pre>
         </li>
