@@ -4,6 +4,7 @@
   <h2>Descrição</h2>
   <p>Esta é uma API desenvolvida em TypeScript utilizando Express, dotenv, mysql2 e nodemon.
   Não será necessário criar um arquivo <code>.env</code> pois estou trabalhando localmente.</p>
+  <p>Data base moldada pelo professor, utilizei os 2 primeiros ID'S de cada usuário para servir de administrador como não tinha a tabela de poder.</p>
   
   <h2>Instalação</h2>
   <p>Para instalar e executar este projeto, siga os passos abaixo:</p>
