@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { MostrarProdutos, NovoUsuario, MostrarUsuarios, AdicionarProduto, RemoverProduto } from '../models/querys'
+import { MostrarProdutos, NovoUsuario, MostrarUsuarios, AdicionarProduto, RemoverProduto, atualizarProduto } from '../models/querys'
 import { log } from 'console';
 
 
@@ -81,22 +81,22 @@ export const removerProduto = async (req: Request, res: Response): Promise<any> 
 };
 
 
-export const atualizarProduto = async (req: Request, res: Response): Promise<any> => {
-    // const nome: string = req.body.nome
-    // const preco: number = req.body.preco
-    // const quantidade: number = req.body.quantidade
-    // const categoria: number = req.body.categoria
+export const atualizarProdutocontroll = async (req: Request, res: Response): Promise<any> => {
+    const nome: string = req.body.nome
+    const preco: number = req.body.preco
+    const quantidade: number = req.body.quantidade
+    const categoria: number = req.body.categoria
     const idproduto: number = parseInt(req.params.idproduto)
-    const dados = {
-        nome: req.body.nome,
-        preco: req.body.preco,
-        quantidade: req.body.quantidade,
-        categoria: req.body.categoria
+    if (nome && preco && quantidade && categoria) {
+
+        const query: any = atualizarProduto(nome, preco, quantidade, categoria, idproduto)
+
+        return res.status(200).json(query)
+    } else {
+
+        return res.status(400).json({ message: "Erro ao atualizar o item" })
     }
-    console.log(dados);
 
 
-
-    return res.status(200).json({ message: "passou" })
 
 };

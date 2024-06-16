@@ -84,3 +84,18 @@ export const RemoverProduto = async (idproduto: number) => {
     }
 
 }
+
+
+export const atualizarProduto = async (nome: string, preco: number, quantidade: number, categoria: number, id: number): Promise<any> => {
+
+    try {
+        await connection.execute(
+            'UPDATE  produtos SET nome = ?, preco = ?, quantidade = ?, categoria_id = ? WHERE id = ?;',
+            [nome, preco, quantidade, categoria, id]
+        );
+        return { message: `Product ${nome} updated` };
+    } catch (error) {
+        console.error(error);
+        return { message: 'Error updating product' };
+    }
+}

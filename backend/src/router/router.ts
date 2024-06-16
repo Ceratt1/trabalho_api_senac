@@ -1,5 +1,5 @@
 import express, { Request, Response, Router } from 'express';
-import { RootVoid, EnviarProdutos, NovoUsuarioControl, MostrarUsers, AdicionarProdutoControl, removerProduto, atualizarProduto } from '../controllers/controllers'
+import { RootVoid, EnviarProdutos, NovoUsuarioControl, MostrarUsers, AdicionarProdutoControl, removerProduto, atualizarProdutocontroll } from '../controllers/controllers'
 import { middlewareNewUser, middlewareCheckId, middlewarNewProduct, middlewareCheckProdutoId } from '../middleware/middlewares'
 const router: Router = express.Router();
 
@@ -10,6 +10,6 @@ router.post('/novousuario', middlewareNewUser, NovoUsuarioControl);
 router.get('/mostrarusuarios', MostrarUsers);
 router.post('/novoproduto/:id/cadastrar', middlewareCheckId, middlewarNewProduct, AdicionarProdutoControl);
 router.delete('/removerproduto/:id/remover/:idproduto', middlewareCheckId, middlewareCheckProdutoId, removerProduto);
-router.put('/atualizar/:id/produto/:idproduto', middlewareCheckId, middlewareCheckProdutoId, atualizarProduto);
+router.put('/atualizar/:id/produto/:idproduto', middlewareCheckId, middlewareCheckProdutoId, atualizarProdutocontroll);
 
 export default router   
