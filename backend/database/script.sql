@@ -100,6 +100,7 @@ DELETE FROM produtos WHERE id = idproduto;
 END//
 DELIMITER;
 
+drop Procedure `CriarCliente`;
 
 DELIMITER //
 

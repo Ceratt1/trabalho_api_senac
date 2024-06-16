@@ -126,7 +126,6 @@ export const MostrarCarrinho = async (req: Request, res: Response): Promise<any>
         somatotal += query[0][index]['preco']
 
     }
-    console.log(somatotal);
     
     const todosDados : any[] = [query[0], {Total: somatotal.toFixed(2)}]
 
