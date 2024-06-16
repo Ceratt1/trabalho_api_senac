@@ -15,4 +15,4 @@ router.post('/comprar/:id/produto/:idproduto', middlewareCheckProdutoId, PedidoP
 router.get('/carrinho/:id', MostrarCarrinho);
 
 
-export default router   
+export default router
