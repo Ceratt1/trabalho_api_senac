@@ -15,4 +15,7 @@ router.post('/comprar/:id/produto/:idproduto', middlewareCheckProdutoId, PedidoP
 router.get('/carrinho/:id', MostrarCarrinho);
 
 
+//preparar front end
+
+
 export default router
